@@ -15,7 +15,7 @@ import java.util.List;
 
 
 public class YouTubePlayerController implements
-        YouTubePlayer.OnInitializedListener, YouTubePlayer.PlayerStateChangeListener, YouTubePlayer.PlaybackEventListener {
+        YouTubePlayer.OnInitializedListener, YouTubePlayer.PlayerStateChangeListener, YouTubePlayer.PlaybackEventListener, YouTubePlayer.OnFullscreenListener {
 
     private YouTubePlayer mYouTubePlayer;
     private YouTubeView mYouTubeView;
@@ -76,6 +76,11 @@ public class YouTubePlayerController implements
     @Override
     public void onStopped() {
         mYouTubeView.didChangeToState("stopped");
+    }
+
+    @Override
+    public void onFullscreen(boolean isFullscreen) {
+        mYouTubeView.didChangeToState(isFullscreen ? "fullscreenMode" : "windowMode");
     }
 
     @Override
